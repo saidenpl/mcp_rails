@@ -1,8 +1,66 @@
-# MCP Rails Configuration Documentation
+# MCP Rails
 
-## Overview
+A Ruby gem that provides a Model Context Protocol (MCP) server for Ruby/Rails coding rules and best practices, designed for use with Cursor IDE.
 
-`mcp_rails.yml` is the configuration file for the Ruby MCP (Model Context Protocol) server. It defines the server metadata, available tools, and prompt templates used by Cursor IDE for Ruby/Rails development assistance.
+## Installation
+
+### As a Gem
+
+```bash
+gem install mcp_rails
+```
+
+Or add it to your Gemfile:
+
+```ruby
+gem "mcp_rails"
+```
+
+Then run:
+
+```bash
+bundle install
+```
+
+### From Source
+
+```bash
+git clone https://github.com/yourusername/mcp_rails.git
+cd mcp_rails
+bundle install
+rake install
+```
+
+## Usage
+
+After installation, you can run the MCP server using:
+
+```bash
+mcp_rails
+```
+
+Or programmatically:
+
+```ruby
+require "mcp_rails"
+MCPRails.run
+```
+
+## Configuration
+
+`mcp_rails.yml` is the configuration file for the Ruby MCP server. It defines the server metadata, available tools, and prompt templates used by Cursor IDE for Ruby/Rails development assistance.
+
+The gem searches for configuration files in the following priority order:
+
+1. **`~/.mcp_rails.yml`** - User's home directory (highest priority)
+2. **`.mcp_rails.yml`** - Current working directory
+3. **`mcp_rails.yml`** - Gem's default configuration (fallback)
+
+You can also specify a custom path programmatically:
+
+```ruby
+MCPRails::Config.load(config_path: "/path/to/your/mcp_rails.yml")
+```
 
 ## File Structure
 
@@ -115,10 +173,19 @@ The prompts use a custom template syntax similar to Handlebars:
 4. **Rails Conventions**: ActiveRecord queries, avoid N+1, prefer scopes, never use concerns
 5. **Testing**: RSpec with verified tag, prefer mocks/stubs, minimal expectations
 
+## Architecture
+
+The gem is organized into the following modules:
+
+- `MCPRails` - Main entry point
+- `MCPRails::Config` - Configuration loading and parsing
+- `MCPRails::Content` - Content rendering and template processing
+- `MCPRails::Server` - JSON-RPC server implementation
+
 ## Integration
 
-This configuration file is loaded by `mcp_rails.rb` which:
-1. Parses the YAML file
+The MCP server:
+1. Parses the YAML configuration file
 2. Converts structured tool content to markdown
 3. Renders prompt templates with provided arguments
 4. Serves tools and prompts via JSON-RPC protocol
