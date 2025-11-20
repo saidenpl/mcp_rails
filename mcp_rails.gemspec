@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.description = "A Model Context Protocol (MCP) server that provides Ruby/Rails coding rules, best practices, and prompt templates for Cursor IDE"
   spec.homepage = "https://github.com/yourusername/mcp_rails"
   spec.license = "MIT"
-  spec.required_ruby_version = ">= 2.7.0"
+  spec.required_ruby_version = ">= 2.6.0"
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = "#{spec.homepage}.git"
