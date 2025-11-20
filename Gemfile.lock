@@ -1,0 +1,18 @@
+PATH
+  remote: .
+  specs:
+    mcp_rails (1.0.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+
+PLATFORMS
+  arm64-darwin-24
+  ruby
+
+DEPENDENCIES
+  mcp_rails!
+
+BUNDLED WITH
+   2.7.2
