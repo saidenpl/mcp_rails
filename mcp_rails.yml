@@ -1,0 +1,83 @@
+server:
+  name: RubyCodingRules
+  version: 1.0.0
+
+tools:
+  - name: get_cursor_coding_rules
+    description: Returns Ruby/Rails coding rules and best practices for Cursor IDE projects.
+    inputSchema:
+      type: object
+      properties: {}
+      required: []
+    content:
+      title: Ruby/Rails Coding Guidelines
+      intro: "Core principles for Ruby and Rails development:"
+      rules:
+        - name: Service Modules
+          description: Prefer service modules in app/services/ for business logic. Use module_function blocks rather than explicit method names.
+        - name: Service Structure
+          description: Services should have a single call method and end with Service suffix.
+        - name: Standard Ruby Style
+          description: Follow StandardRB rules. Use keyword arguments, prefer hash shorthand, avoid unnecessary comments.
+        - name: SOLID Principles
+          description: Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, Dependency Inversion.
+        - name: Class Size
+          description: Keep classes focused and under 100 lines.
+        - name: Rails Queries
+          description: Use ActiveRecord for queries, avoid N+1 with includes, prefer scopes over class methods.
+        - name: Id-Indexed Hashes
+          description: Use id-indexed hashes (e.g., records.index_by(&:id)) to avoid N+1 queries when looking up records by id.
+        - name: No Concerns
+          description: Never use concerns - prefer service objects or composition instead.
+        - name: Testing
+          description: Write RSpec tests with verified tag. Prefer mocks/stubs over DB objects. Keep tests focused with minimal expectations.
+      footer: This data is provided by your custom Ruby MCP Server.
+
+prompts:
+  - name: code_review
+    description: Review Ruby/Rails code for quality, bugs, and best practices
+    arguments:
+      - name: code
+        description: The Ruby/Rails code to review
+        required: true
+      - name: focus_areas
+        description: Specific areas to focus on (performance, security, style, SOLID, etc.)
+        required: false
+    template: |
+      Review the following Ruby/Rails code{{#if focus_areas}} focusing on: {{focus_areas}}{{/if}}:
+
+      ```ruby
+      {{code}}
+      ```
+
+      Check for: StandardRB compliance, SOLID principles, service object patterns, N+1 queries, proper error handling, and Rails best practices.
+
+  - name: refactor_suggestion
+    description: Suggest Ruby/Rails refactoring improvements
+    arguments:
+      - name: code
+        description: The Ruby/Rails code to refactor
+        required: true
+    template: |
+      Suggest refactoring improvements for the following Ruby code:
+
+      ```ruby
+      {{code}}
+      ```
+
+      Focus on: extracting service objects, applying SOLID principles, improving readability, reducing complexity, and following Rails conventions.
+
+  - name: generate_documentation
+    description: Generate RDoc/YARD documentation for Ruby classes and methods
+    arguments:
+      - name: code
+        description: The Ruby code to document
+        required: true
+    template: |
+      Generate RDoc/YARD documentation for the following Ruby code:
+
+      ```ruby
+      {{code}}
+      ```
+
+      Include method descriptions, parameter types, return values, and usage examples following Ruby documentation conventions.
