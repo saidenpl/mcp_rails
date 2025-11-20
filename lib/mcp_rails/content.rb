@@ -51,11 +51,7 @@ module MCPRails
 
     def build_tool_response(tool_config)
       content = tool_config["content"]
-      markdown = if content["markdown"]
-        content["markdown"]
-      else
-        build_markdown_from_structure(content)
-      end
+      markdown = content["markdown"] || build_markdown_from_structure(content)
 
       {
         "content" => [
@@ -74,7 +70,7 @@ module MCPRails
       parts << content["intro"] if content["intro"]
       parts << "" if content["intro"]
 
-      if content["rules"] && content["rules"].is_a?(Array)
+      if content["rules"]&.is_a?(Array)
         content["rules"].each_with_index do |rule, index|
           parts << "#{index + 1}.  **#{rule["name"]}:** #{rule["description"]}"
         end

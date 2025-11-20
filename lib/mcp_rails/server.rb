@@ -19,7 +19,7 @@ module MCPRails
 
     def run(config, server_manifest, prompts)
       log_startup
-      STDIN.each_line { |line| process_request(line, config, server_manifest, prompts) }
+      $stdin.each_line { |line| process_request(line, config, server_manifest, prompts) }
     end
 
     def log_startup

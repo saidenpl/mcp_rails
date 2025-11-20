@@ -4,4 +4,3 @@
 require_relative "../lib/mcp_rails"
 
 MCPRails.run
-
