@@ -1,4 +1,7 @@
 # MCP Rails
+<img width="696" height="327" alt="image" src="https://github.com/user-attachments/assets/e4f28ade-d22c-4014-82bb-9f3b6621761a" />
+
+#### DISCLAIMER: This is a tool I wrote for myself to play around with Cursor MCP handling. Very very WIP
 
 A Ruby gem that provides a Model Context Protocol (MCP) server for Ruby/Rails coding rules and best practices, designed for use with Cursor IDE.
 
